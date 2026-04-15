@@ -38,7 +38,7 @@ const Login = () => {
       if (error) {
         setError(error);
       } else {
-        setSuccessMessage("Compte créé ! Vérifiez votre email pour confirmer votre inscription.");
+        setSuccessMessage("Compte créé ! Un email de confirmation a été envoyé à " + email + ". Vérifiez votre boîte de réception.");
       }
     }
 
