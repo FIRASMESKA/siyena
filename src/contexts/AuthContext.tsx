@@ -89,29 +89,79 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           body: {
             to: email,
             subject: "SIYENA — Confirmez votre adresse email",
-            html: `
-              <div style="font-family: 'Inter', Arial, sans-serif; max-width: 480px; margin: 0 auto; padding: 40px 24px; background: #ffffff;">
-                <div style="text-align: center; margin-bottom: 32px;">
-                  <div style="display: inline-block; background: #0F4C3A; color: white; width: 56px; height: 56px; border-radius: 16px; line-height: 56px; font-size: 24px;">🔧</div>
-                  <h1 style="font-size: 28px; font-weight: 700; color: #0F172A; margin: 16px 0 4px;">SIYENA</h1>
-                  <p style="color: #64748b; font-size: 14px; margin: 0;">Module Technicien</p>
-                </div>
-                <h2 style="font-size: 20px; color: #0F172A; margin-bottom: 16px;">Bienvenue, ${nom} !</h2>
-                <p style="color: #475569; font-size: 15px; line-height: 1.6; margin-bottom: 24px;">
-                  Merci de vous être inscrit sur SIYENA. Pour activer votre compte, veuillez confirmer votre adresse email en cliquant sur le bouton ci-dessous.
-                </p>
-                <div style="text-align: center; margin: 32px 0;">
-                  <a href="${confirmUrl}" style="display: inline-block; background: #0F4C3A; color: white; padding: 14px 32px; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 15px;">
-                    Confirmer mon email
-                  </a>
-                </div>
-                <p style="color: #94a3b8; font-size: 13px; line-height: 1.5;">
-                  Si vous n'avez pas créé de compte sur SIYENA, vous pouvez ignorer cet email.
-                </p>
-                <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 32px 0 16px;" />
-                <p style="color: #cbd5e1; font-size: 12px; text-align: center;">© 2026 SIYENA. Tous droits réservés.</p>
-              </div>
-            `,
+              html: `
+  <div style="margin:0; padding:0; background:#f8fafc;">
+    <div style="max-width:520px; margin:40px auto; background:#ffffff; border-radius:16px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.08); font-family:Inter, Arial, sans-serif;">
+      
+      <!-- HEADER -->
+      <div style="background:linear-gradient(135deg,#f97316,#fb923c); padding:28px 24px; text-align:center;">
+        <img src="${window.location.origin}/cims.png" alt="CIMS" style="height:32px; margin-bottom:12px;" />
+        <div>
+          <img src="${window.location.origin}/siyena.png" alt="SIYENA" style="height:36px;" />
+        </div>
+        <p style="color:rgba(255,255,255,0.85); font-size:13px; margin-top:8px;">
+          Plateforme de gestion technique
+        </p>
+      </div>
+
+      <!-- CONTENT -->
+      <div style="padding:32px 28px;">
+        
+        <h2 style="font-size:22px; color:#0f172a; margin-bottom:12px;">
+          Bienvenue, ${nom} 👋
+        </h2>
+
+        <p style="color:#475569; font-size:15px; line-height:1.6; margin-bottom:24px;">
+          Merci de vous être inscrit sur <strong>SIYENA</strong>.
+          Pour activer votre compte et accéder à votre espace technicien,
+          veuillez confirmer votre adresse email.
+        </p>
+
+        <!-- CTA BUTTON -->
+        <div style="text-align:center; margin:30px 0;">
+          <a href="${confirmUrl}" 
+             style="
+              display:inline-block;
+              background:linear-gradient(135deg,#f97316,#ea580c);
+              color:white;
+              padding:14px 34px;
+              border-radius:10px;
+              font-size:15px;
+              font-weight:600;
+              text-decoration:none;
+              box-shadow:0 6px 18px rgba(249,115,22,0.3);
+             ">
+            Confirmer mon email
+          </a>
+        </div>
+
+        <!-- ALT LINK -->
+        <p style="color:#94a3b8; font-size:13px; line-height:1.5;">
+          Si le bouton ne fonctionne pas, copiez ce lien dans votre navigateur :
+        </p>
+        <p style="word-break:break-all; font-size:12px; color:#64748b;">
+          ${confirmUrl}
+        </p>
+
+        <p style="color:#94a3b8; font-size:13px; margin-top:24px;">
+          Si vous n'avez pas créé de compte, vous pouvez ignorer cet email.
+        </p>
+
+      </div>
+
+      <!-- FOOTER -->
+      <div style="background:#f1f5f9; padding:20px; text-align:center;">
+        <p style="font-size:12px; color:#64748b; margin-bottom:6px;">
+          © ${new Date().getFullYear()} CIMS • SIYENA
+        </p>
+        <p style="font-size:11px; color:#94a3b8;">
+          Tous droits réservés
+        </p>
+      </div>
+
+    </div>
+  </div>
+`
           },
         });
       } catch (e) {
