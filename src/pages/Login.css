@@ -29,12 +29,14 @@
   z-index: 10;
 }
 
+/* CIMS Logo - 50px × 50px */
 .cims-logo {
   width: 50px;
   height: 50px;
   background: transparent;
 }
 
+/* Siyena Header Logo - 55px × 55px */
 .siyena-header-logo {
   width: 55px;
   height: 55px;
@@ -139,6 +141,7 @@
 }
 
 .siyena-logo {
+  /* Siyena Logo - 60px × 60px */
   width: 60px;
   height: 60px;
   margin-bottom: 15px;
