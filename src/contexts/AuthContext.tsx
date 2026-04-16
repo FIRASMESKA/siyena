@@ -69,14 +69,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return { error: error?.message ?? null };
   };
 
-   const signUp = async (email: string, password: string, nom: string) => {
-     const { data, error } = await supabase.auth.signUp({
-       email,
-       password,
-       options: {
-         data: { nom },
-       },
-     });
+  const signUp = async (email: string, password: string, nom: string) => {
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: { nom },
+        emailRedirectTo: `${window.location.origin}/confirm-email`,
+      },
+    });
     if (error) return { error: error.message };
 
     // Send custom confirmation email via Gmail SMTP
