@@ -3,7 +3,7 @@ import { useNotifications } from "@/hooks/useNotifications";
 import { NotificationCard } from "@/components/NotificationCard";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { Bell, CheckCheck, LogOut, RefreshCw, Loader2, Wrench, Inbox } from "lucide-react";
+import { Bell, CheckCheck, LogOut, RefreshCw, Loader2, Inbox } from "lucide-react";
 
 const Dashboard = () => {
   const { technicien, signOut } = useAuth();
@@ -16,15 +16,11 @@ const Dashboard = () => {
       <header className="sticky top-0 z-10 border-b border-border/50 bg-background/80 backdrop-blur-lg">
         <div className="mx-auto flex max-w-3xl items-center justify-between px-4 py-4">
           <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground">
-              <Wrench className="h-4 w-4" />
-            </div>
-            <div>
-              <h1 className="font-heading text-lg font-bold leading-none">SIYENA</h1>
-              <p className="text-xs text-muted-foreground">
-                Bonjour, {technicien?.nom ?? "Technicien"}
-              </p>
-            </div>
+            <img
+              src="/siyena.png"
+              alt="SIYENA Logo"
+              className="h-12 w-12 bg-transparent"
+            />
           </div>
 
           <Button variant="ghost" size="sm" onClick={signOut}>
@@ -88,6 +84,15 @@ const Dashboard = () => {
           </div>
         )}
       </main>
+
+      {/* Footer */}
+      <footer className="border-t border-border/50 bg-background/50 py-4">
+        <div className="mx-auto max-w-3xl px-4 text-center">
+          <p className="text-xs text-muted-foreground">
+              © {new Date().getFullYear()} CIMS — Siyena
+          </p>
+        </div>
+      </footer>
     </div>
   );
 };

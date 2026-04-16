@@ -1,12 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { Loader2, Wrench } from "lucide-react";
+import { Loader2 } from "lucide-react";
+import "./Login.css";
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -45,125 +42,196 @@ const Login = () => {
     setLoading(false);
   };
 
+  const handleToggle = () => {
+    setIsLogin(!isLogin);
+    setError("");
+    setSuccessMessage("");
+    setEmail("");
+    setPassword("");
+    setNom("");
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      {/* Background decoration */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -left-32 -top-32 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
-        <div className="absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-accent/5 blur-3xl" />
+    <div className="login-page">
+      {/* Header Logo */}
+      <div className="header-logo">
+        <img
+          src="/cims.png"
+          alt="CIMS Logo"
+          className="cims-logo"
+        />
+        <img
+          src="/siyena.png"
+          alt="Siyena Logo"
+          className="siyena-header-logo"
+        />
+        <div className="logo-text">
+          <h3>Centre Informatique</h3>
+          <p>du Ministère de la Santé</p>
+        </div>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        className="w-full max-w-md"
-      >
-        {/* Logo */}
-        <div className="mb-8 flex flex-col items-center gap-3">
-          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-lg">
-            <Wrench className="h-7 w-7" />
-          </div>
-          <h1 className="font-heading text-3xl font-bold tracking-tight text-foreground">
-            SIYENA
-          </h1>
-          <p className="text-sm text-muted-foreground">Module Technicien</p>
+      {/* Main Container */}
+      <div className={`auth-container ${!isLogin ? "sign-up-mode" : ""}`}>
+        {/* Sign In Form */}
+        <div className="form-container sign-in-container">
+          <form onSubmit={handleSubmit} className="auth-form">
+            <div className="form-header">
+              <h1>Connexion</h1>
+              <p>Connectez-vous à votre espace technicien</p>
+            </div>
+
+            <div className="form-group">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email"
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Mot de passe"
+                required
+                minLength={6}
+              />
+            </div>
+
+            {error && (
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="error-message"
+              >
+                {error}
+              </motion.p>
+            )}
+
+            {successMessage && (
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="success-message"
+              >
+                {successMessage}
+              </motion.p>
+            )}
+
+            <button type="submit" className="auth-button" disabled={loading}>
+              {loading ? (
+                <>
+                  <Loader2 className="spinner" />
+                  Connexion...
+                </>
+              ) : (
+                "Se connecter"
+              )}
+            </button>
+          </form>
         </div>
 
-        <Card className="border-border/50 shadow-xl">
-          <CardHeader className="text-center">
-            <CardTitle className="font-heading text-xl">
-              {isLogin ? "Connexion" : "Créer un compte"}
-            </CardTitle>
-            <CardDescription>
-              {isLogin
-                ? "Connectez-vous à votre espace technicien"
-                : "Inscrivez-vous en tant que technicien"}
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {!isLogin && (
-                <div className="space-y-2">
-                  <Label htmlFor="nom">Nom complet</Label>
-                  <Input
-                    id="nom"
-                    value={nom}
-                    onChange={(e) => setNom(e.target.value)}
-                    placeholder="Jean Dupont"
-                    required={!isLogin}
-                  />
-                </div>
+        {/* Sign Up Form */}
+        <div className="form-container sign-up-container">
+          <form onSubmit={handleSubmit} className="auth-form">
+            <div className="form-header">
+              <h1>Créer un compte</h1>
+              <p>Inscrivez-vous en tant que technicien</p>
+            </div>
+
+            <div className="form-group">
+              <input
+                type="text"
+                value={nom}
+                onChange={(e) => setNom(e.target.value)}
+                placeholder="Nom complet"
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email"
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Mot de passe"
+                required
+                minLength={6}
+              />
+            </div>
+
+            {error && (
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="error-message"
+              >
+                {error}
+              </motion.p>
+            )}
+
+            {successMessage && (
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="success-message"
+              >
+                {successMessage}
+              </motion.p>
+            )}
+
+            <button type="submit" className="auth-button" disabled={loading}>
+              {loading ? (
+                <>
+                  <Loader2 className="spinner" />
+                  Inscription...
+                </>
+              ) : (
+                "S'inscrire"
               )}
+            </button>
+          </form>
+        </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="technicien@siyena.com"
-                  required
-                />
-              </div>
+        {/* Overlay */}
+        <div className="overlay-container">
+          <div className="overlay">
+            <div className="overlay-panel overlay-left">
+              <h1>Bienvenue !</h1>
+              <p>Vous avez déjà un compte ? Connectez-vous pour accéder à votre espace.</p>
+              <button className="overlay-button" onClick={handleToggle}>
+                Se connecter
+              </button>
+            </div>
+            <div className="overlay-panel overlay-right">
+              <h1>Bienvenue !</h1>
+              <p>Vous êtes nouveau ? Créez un compte pour accéder à votre espace technicien.</p>
+              <button className="overlay-button" onClick={handleToggle}>
+                S'inscrire
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="password">Mot de passe</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="••••••••"
-                  required
-                  minLength={6}
-                />
-              </div>
-
-              {error && (
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="text-sm text-destructive"
-                >
-                  {error}
-                </motion.p>
-              )}
-
-              {successMessage && (
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="text-sm text-accent"
-                >
-                  {successMessage}
-                </motion.p>
-              )}
-
-              <Button type="submit" className="w-full" disabled={loading}>
-                {loading && <Loader2 className="animate-spin" />}
-                {isLogin ? "Se connecter" : "S'inscrire"}
-              </Button>
-
-              <p className="text-center text-sm text-muted-foreground">
-                {isLogin ? "Pas encore de compte ?" : "Déjà un compte ?"}{" "}
-                <button
-                  type="button"
-                  onClick={() => {
-                    setIsLogin(!isLogin);
-                    setError("");
-                    setSuccessMessage("");
-                  }}
-                  className="font-medium text-primary hover:underline"
-                >
-                  {isLogin ? "S'inscrire" : "Se connecter"}
-                </button>
-              </p>
-            </form>
-          </CardContent>
-        </Card>
-      </motion.div>
+      {/* Footer */}
+      <footer className="login-footer">
+        <p>© {new Date().getFullYear()} CIMS — Siyena</p>
+      </footer>
     </div>
   );
 };
