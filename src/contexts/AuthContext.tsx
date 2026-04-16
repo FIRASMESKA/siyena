@@ -92,10 +92,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             html: `
               <div style="font-family: 'Inter', Arial, sans-serif; max-width: 480px; margin: 0 auto; padding: 40px 24px; background: #ffffff;">
                 <div style="text-align: center; margin-bottom: 32px;">
-                  <div style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 16px;">
-                    <img src="${window.location.origin}/cims.png" alt="CIMS Logo" style="width: 50px; height: 50px;" />
-                    <img src="${window.location.origin}/siyena.png" alt="Siyena Logo" style="width: 55px; height: 55px;" />
-                  </div>
+                  <div style="display: inline-block; background: #0F4C3A; color: white; width: 56px; height: 56px; border-radius: 16px; line-height: 56px; font-size: 24px;">🔧</div>
                   <h1 style="font-size: 28px; font-weight: 700; color: #0F172A; margin: 16px 0 4px;">SIYENA</h1>
                   <p style="color: #64748b; font-size: 14px; margin: 0;">Module Technicien</p>
                 </div>
@@ -104,7 +101,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                   Merci de vous être inscrit sur SIYENA. Pour activer votre compte, veuillez confirmer votre adresse email en cliquant sur le bouton ci-dessous.
                 </p>
                 <div style="text-align: center; margin: 32px 0;">
-                  <a href="${confirmUrl}" style="display: inline-block; background: linear-gradient(135deg, #ff8d0a 0%, #d97706 100%); color: white; padding: 14px 32px; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 15px;">
+                  <a href="${confirmUrl}" style="display: inline-block; background: #0F4C3A; color: white; padding: 14px 32px; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 15px;">
                     Confirmer mon email
                   </a>
                 </div>
