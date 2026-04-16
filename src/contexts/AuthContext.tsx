@@ -80,7 +80,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     });
     if (error) return { error: error.message };
 
-    // Send custom confirmation email via Gmail SMTP
     if (data.user && !data.session) {
       // User created but not confirmed — send confirmation email
       const confirmUrl = `${window.location.origin}/confirm-email?token_hash=${data.user.id}`;
