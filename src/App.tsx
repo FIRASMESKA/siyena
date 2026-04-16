@@ -7,7 +7,6 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
-import ConfirmEmail from "./pages/ConfirmEmail";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,7 +21,6 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Navigate to="/login" replace />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/confirm-email" element={<ConfirmEmail />} />
             <Route
               path="/dashboard"
               element={
